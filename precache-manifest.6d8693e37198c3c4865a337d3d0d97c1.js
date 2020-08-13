@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "607f60cb23330f5670c3c76883e3737e",
+    "revision": "2a0e024983bc1dd0dc5ad2f9e308834d",
     "url": "/time-list-pwa/index.html"
   },
   {
-    "revision": "411298f22818a2a64c6f",
+    "revision": "4afc8deb6ee3a91c96e2",
     "url": "/time-list-pwa/static/css/main.4f4887bb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/time-list-pwa/static/js/2.ecf815fe.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "411298f22818a2a64c6f",
-    "url": "/time-list-pwa/static/js/main.de2840a3.chunk.js"
+    "revision": "4afc8deb6ee3a91c96e2",
+    "url": "/time-list-pwa/static/js/main.022fc02b.chunk.js"
   },
   {
     "revision": "1427dca1453f24d344a9",
