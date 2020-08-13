@@ -28,6 +28,7 @@ self.addEventListener('install', function(event) {
             })
             .then(assets => {
               const arrAssets = Object.values(assets.files);
+            console.log(assets);
               const urlsToCache = [
                 "/",
                 "/db.json",
