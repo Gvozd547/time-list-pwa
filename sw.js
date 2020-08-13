@@ -38,9 +38,9 @@ self.addEventListener('install', function(event) {
               // We could also cache any static assets like CSS or images
               const arrAssets = Object.values(assets.files);
               const urlsToCache = [
-                "/",
-                "/db.json",
-                "/favicon.ico",
+                "/time-list-pwa/",
+                "/time-list-pwa/db.json",
+                "/time-list-pwa/favicon.ico",
                 ...arrAssets
               ]
               cache.addAll(urlsToCache)
