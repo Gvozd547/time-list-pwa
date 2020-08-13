@@ -32,6 +32,7 @@ self.addEventListener('install', function(event) {
                 "/",
                 "/db.json",
                 "/favicon.ico",
+                "/manifest.json",
                 ...arrAssets
               ]
               cache.addAll(urlsToCache)

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Event from '../components/Event/Event';
 import Loader from '../components/Loader/Loader';
 import { getData } from '../fakeAPI/index';
-import { getFormatTime, checkTime } from '../helper';
+import { getFormatTime, checkTime, notificationInterval } from '../helper';
 
 class Main extends PureComponent {
     state = {
@@ -16,6 +16,7 @@ class Main extends PureComponent {
         const events = result?.collection[0].events;
         
         if (events) {
+            notificationInterval(events);
             this.setState({
                 events,
                 loader: false

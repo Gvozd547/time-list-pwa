@@ -1,26 +1,45 @@
 import {showNotify} from './swController';
 
-export function checkTime(dateStart, dateEnd, name) {
+const TIME_PUSH = 5 * 60 * 1000;
+const VALUE_STATUS = [
+  'past',
+  'online'
+];
+
+export function checkTime(dateStart, dateEnd) {
     const currentUTCDateStart = convertTimeToCurrent(dateStart);
     const currentUTCDateEnd = convertTimeToCurrent(dateEnd);
     const dateNow = new Date();
-    if (dateNow < currentUTCDateStart) {
-        notificationInterval(currentUTCDateStart, name);
-        return 'default';
-    }
-    return dateNow < currentUTCDateEnd ? 'online' : 'past';
+    return dateNow < currentUTCDateStart ? 'default' : dateNow < currentUTCDateEnd ? 'online' : 'past';
 }
 
-function notificationInterval(dateStart, name) {
-    let timerId = setTimeout(function tick() {
-        const currentDateTime = new Date().getTime();
-        const dateStartTime = dateStart.getTime();
-        if (currentDateTime > dateStartTime - 60000) {
-            showNotify(name, 'Событие скоро начнется!');
-        } else {
-            timerId = setTimeout(tick, 60000);
+function inDateScope(dateStart) {
+    const timeStamp = convertTimeToCurrent(dateStart).getTime() - Date.now();
+    return timeStamp > 0 && timeStamp < TIME_PUSH;
+}
+
+export function notificationInterval(data) {
+    setTimeout(tick, 0, data);
+}
+
+function tick(itemData) {
+    const arrFiltred = itemData.filter(({timeStart, timeEnd, pushed}) => {
+        const isStatus = VALUE_STATUS.includes(checkTime(timeStart, timeEnd));
+        return !pushed && !isStatus;
+    });
+    const arrNotifyText = [];
+    arrFiltred.forEach((item) => {
+        if (inDateScope(item.timeStart)) {
+            arrNotifyText.push(`Событие ${item.info.title} скоро начнется`);
+            item.pushed = true;
         }
-    }, 0);
+    });
+    if (arrNotifyText.length) {
+       showNotify('', arrNotifyText.join('\n'));
+    }
+    if (arrFiltred.length) {
+        setTimeout(tick, TIME_PUSH, arrFiltred);
+    }
 }
 
 function convertTimeToCurrent(date) {
