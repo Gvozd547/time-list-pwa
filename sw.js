@@ -22,7 +22,7 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
       caches.open(CACHE_NAME)
         .then(function(cache) {
-          fetch("/asset-manifest.json")
+          fetch("/time-list-pwa/asset-manifest.json")
             .then(response => {
               return response.json()
             })
